@@ -4,6 +4,7 @@ import PortableText from "react-portable-text";
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useState } from "react";
 import Footer from "../../components/Footer";
+import Head from "next/head";
 
 function Post({ post }) {
 

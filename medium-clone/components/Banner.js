@@ -12,9 +12,11 @@ function Banner() {
         </h2>
 
         <div>
-          <button className="bg-black text-orange-300 px-5 py-2 rounded-full">
-            Start Writing
-          </button>
+          <h2 className="text-xs font-bold">
+            *header button are non functional<br />
+            *this is only for personal blog where I can only write and edit posts.<br />
+            *you can only read and comment on the post
+          </h2>
         </div>
       </div>
     </div>

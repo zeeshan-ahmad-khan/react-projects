@@ -1,0 +1,15 @@
+.layout {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: calc(100% - 300px);
+  min-height: 100%;
+}
+
+@media screen and (max-width: 700px) {
+  .layout {
+    overflow: hidden;
+    right: 1%;
+    width: 355px;
+  }
+}

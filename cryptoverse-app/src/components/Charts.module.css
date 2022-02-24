@@ -1,0 +1,25 @@
+.charts {
+  height: max-content;
+  padding: 0.5rem;
+}
+
+.duration {
+  border-radius: 10px;
+  background: transparent;
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  padding: 0.5rem;
+  width: 170px;
+  height: 40px;
+}
+
+.prices {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1rem;
+}
+
+ul {
+  margin: 1rem 0;
+}

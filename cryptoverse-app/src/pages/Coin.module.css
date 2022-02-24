@@ -1,0 +1,92 @@
+.cryptocoin {
+  min-height: calc(100vh - 350px);
+  padding: 1rem;
+  background-color: #0060731a;
+  color: #005f73;
+}
+
+.cryptocoin > h1 {
+  padding: 1rem 0;
+  font-size: 1.7rem;
+  letter-spacing: 0.5rem;
+  text-align: center;
+  border-bottom: 2px solid #005f73;
+}
+
+.cryptocoin img {
+  position: absolute;
+  height: 50px;
+  width: 50px;
+}
+
+.stats {
+  width: 49%;
+}
+
+.coinStats {
+  margin: 1rem 0;
+  font-size: 1.3rem;
+  /* background-color: pink; */
+  display: flex;
+  justify-content: space-around;
+}
+
+/* .coinStats h2 {
+  text-decoration: underline;
+} */
+
+.coinStats p {
+  margin: 1rem 0;
+}
+
+.statsBox {
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  border-radius: 10px;
+  color: #fff;
+  /* box-shadow: 0 0 10px #005f73; */
+  background-color: #005f73;
+}
+
+.coinValues {
+  border-bottom: 1px solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0.5rem;
+}
+
+.aboutCoin {
+  padding: 0.5rem;
+}
+
+.aboutCoin div {
+  margin: 1rem 0;
+}
+
+.aboutCoin > div p {
+  margin: 0.5rem 0;
+}
+
+.link {
+  padding: 0.5rem;
+}
+
+@media screen and (max-width: 700px) {
+  .cryptocoin > h1 {
+    font-size: 1rem;
+    letter-spacing: 0.1rem;
+  }
+
+  .stats {
+    width: 320px;
+  }
+
+  .coinStats {
+    flex-direction: column;
+  }
+
+  .coinValues {
+    flex-direction: column;
+  }
+}

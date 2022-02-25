@@ -18,3 +18,11 @@
 .attrib img {
   margin-left: 0.5rem;
 }
+
+@media screen and (max-width: 700px) {
+  .footer {
+    color: #005f73;
+    background-color: #fff;
+    border-top: 2px solid #005f73;
+  }
+}

@@ -1,6 +1,7 @@
 .home {
   width: 100%;
   height: 100%;
+  color: #005f73;
 }
 
 .stats {
@@ -37,6 +38,22 @@
 @media screen and (max-width: 700px) {
   .home {
     width: 100%;
+  }
+
+  .stats h3 {
+    font-size: 1.5rem;
+  }
+
+  .statsBox h5 {
+    font-size: 1.1rem;
+  }
+
+  .statsBox p {
+    font-size: 1rem;
+  }
+
+  .statsBox {
+    height: 100px;
   }
 
   .statsGrid {

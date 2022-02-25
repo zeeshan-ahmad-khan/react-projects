@@ -5,6 +5,7 @@ import Cryptocurrencies from './Cryptocurrencies';
 
 import classes from '../pages/Home.module.css'
 import News from './News';
+import Header from '../components/Header';
 
 function Home({ url }) {
 

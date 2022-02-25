@@ -40,6 +40,11 @@
   min-height: 150px;
   padding: 0.5rem;
   border-radius: 10px;
+  transition: scale 0.5s ease-in-out;
+}
+
+.coin:hover {
+  transform: scale(1.01);
 }
 
 .coin img {

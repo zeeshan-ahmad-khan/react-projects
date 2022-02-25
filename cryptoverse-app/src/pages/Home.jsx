@@ -2,7 +2,9 @@ import millify from 'millify';
 import useFetch from '../utilities/useFetch';
 import { BiStats } from 'react-icons/bi'
 import Cryptocurrencies from './Cryptocurrencies';
+
 import classes from '../pages/Home.module.css'
+import News from './News';
 
 function Home({ url }) {
 
@@ -44,6 +46,8 @@ function Home({ url }) {
             </div>
 
             <Cryptocurrencies cryptocoins={reqData?.coins} isHomepage={true} isPending={isPending} />
+
+            <News isHomepage={true} />
 
         </div>
     )

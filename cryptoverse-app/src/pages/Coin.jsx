@@ -9,7 +9,6 @@ import { TiWaves, TiTick } from 'react-icons/ti'
 import { ImCross } from 'react-icons/im'
 
 import classes from './Coin.module.css'
-import Charts from '../components/Charts';
 
 function Coin() {
 

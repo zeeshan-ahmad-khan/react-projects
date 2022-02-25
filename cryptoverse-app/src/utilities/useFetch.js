@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 
-
 function useFetch(url) {
 
     const [reqData, setData] = useState();
@@ -12,12 +11,11 @@ function useFetch(url) {
 
     const fetchData = (url) => {
 
-
         fetch(`https://coinranking1.p.rapidapi.com/${url}`, {
             "method": "GET",
             "headers": {
                 "x-rapidapi-host": "coinranking1.p.rapidapi.com",
-                "x-rapidapi-key": "cf02ab27b8mshb23938f825c9faap10a879jsn01ad69e099df"
+                "x-rapidapi-key": process.env.REACT_APP_API_KEY,
             }
         })
             .then(res => {

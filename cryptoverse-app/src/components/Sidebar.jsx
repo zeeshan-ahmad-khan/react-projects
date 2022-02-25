@@ -8,7 +8,6 @@ function Sidebar() {
 
     const [isSelected, setIsSelected] = useState(0)
 
-
     return (
         <header className={classes.wrapper}>
             <div className={classes.logo} onClick={() => setIsSelected(0)}>

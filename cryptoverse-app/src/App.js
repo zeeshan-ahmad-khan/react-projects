@@ -1,7 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 import Home from './pages/Home';
 import Cryptocurrencies from './pages/Cryptocurrencies'
-import Exchanges from './pages/Exchanges'
 import News from './pages/News'
 import Coin from './pages/Coin';
 import Layout from './UI/Layout';

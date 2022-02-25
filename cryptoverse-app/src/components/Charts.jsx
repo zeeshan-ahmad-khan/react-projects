@@ -1,3 +1,4 @@
+// Charts can be implemented also
 import { useState } from 'react';
 import useFetch from '../utilities/useFetch'
 

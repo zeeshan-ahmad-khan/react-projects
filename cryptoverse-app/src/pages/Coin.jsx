@@ -7,6 +7,7 @@ import { FaDollarSign, FaBtc, FaRegChartBar, FaMedal } from 'react-icons/fa'
 import { BsDroplet } from 'react-icons/bs'
 import { TiWaves, TiTick } from 'react-icons/ti'
 import { ImCross } from 'react-icons/im'
+import Charts from '../components/Charts';
 
 import classes from './Coin.module.css'
 
@@ -87,7 +88,7 @@ function Coin() {
             </div>
 
             {/* Charts */}
-            {/* <Charts coinId={coinId} /> */}
+            <Charts coinId={coinId} />
 
             {/* About Coins */}
             <div className={classes.aboutCoin}>

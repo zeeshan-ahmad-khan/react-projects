@@ -1,0 +1,401 @@
+/* Style Reset */
+* {
+  color: black;
+}
+
+button {
+  outline: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.App {
+  width: calc(100vw - 1rem);
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* Header component */
+.header {
+  color: white;
+  background: linear-gradient(45deg, #e61c23, #e61c23 50%, #0472ea 50%);
+  width: 100%;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.headerLogo {
+  margin-left: 1rem;
+  font-size: 2rem;
+}
+
+.headerSearchBar {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.headerSearchBar input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-right: 0.5rem;
+  border-radius: 5px;
+}
+
+.magnifier {
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+.cart {
+  position: relative;
+  text-align: center;
+  font-size: 1.5rem;
+  margin-left: 1rem;
+}
+
+.itemQuantity {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  font-size: 0.7rem;
+  background-color: black;
+  color: gold;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+}
+
+.headerButton {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.headerButton > button {
+  outline: 0;
+  border: 0;
+  background-color: white;
+  border-radius: 5px;
+  padding: 0.5rem;
+  margin-inline: 0.5rem;
+  cursor: pointer;
+  width: 100px;
+}
+
+.user {
+  width: max-content;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-inline: 1rem;
+}
+
+.user > img {
+  margin-left: 1rem;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.user > span {
+  color: white;
+}
+
+/* Hero Component */
+.hero {
+  width: 70%;
+  margin: 1rem auto;
+}
+
+.hero > h1 {
+  text-align: center;
+}
+
+.heroCard {
+  background: linear-gradient(65deg, #e61c23, #e61c23 50%, #0472ea 50%);
+  width: 80%;
+  height: max-content;
+  border-radius: 15px;
+  padding: 1rem;
+  margin: 2rem auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.heroCard > img {
+  border: 3px solid black;
+  border-radius: 15px;
+  width: 70%;
+  height: 300px;
+}
+
+.name {
+  flex: 1;
+  height: max-content;
+}
+
+.name > h3 {
+  font-size: 2rem;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+/* Cards component */
+.cards {
+  width: 70%;
+  margin: 3rem auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+}
+
+.cards h1 {
+  color: gold;
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.card {
+  position: relative;
+  padding: 1rem 0;
+  background: linear-gradient(65deg, #e61c23, #e61c23 50%, #0472ea 50%);
+}
+
+.card > a {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.price {
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  font-size: 1rem;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: gold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(-10deg);
+}
+
+.imgContainer {
+  position: relative;
+  width: 90%;
+  height: 80%;
+  border: 5px solid gold;
+  box-shadow: 0 0 5px #1f1f1f;
+}
+
+.imgContainer > img {
+  width: 100%;
+  height: 80%;
+}
+
+.powerstats {
+  position: absolute;
+  bottom: -1px;
+  width: 100%;
+  background-color: gold;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem 1rem;
+  padding: 0.5rem 0;
+}
+
+.stats {
+  width: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
+
+.stats > img {
+  width: 30px;
+  height: 30px;
+}
+
+.stats > span {
+  font-size: 1.3rem;
+  margin-left: 1rem;
+}
+
+.btns {
+  width: calc(100% - 2rem);
+  background-color: gold;
+  border-radius: 10px;
+  margin: 0.5rem 1rem;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+/* Cart Page */
+.cartContainer {
+  width: 70%;
+  min-height: 75vh;
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.cartItems {
+  background: linear-gradient(65deg, #e61c23, #e61c23 50%, #0472ea 50%);
+  padding: 1rem 2rem;
+  box-shadow: 0 0 5px #afafaf;
+  border-radius: 10px;
+  margin: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.img {
+  position: relative;
+  width: 15%;
+  border: 5px solid gold;
+  box-shadow: 0 0 5px #1f1f1f;
+}
+
+.img > img {
+  width: 100%;
+}
+
+.quantity {
+  width: 170px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.quantity > span {
+  font-size: 1.3rem;
+  color: gold;
+  font-weight: bold;
+}
+
+.quantity > button {
+  font-size: 1.5rem;
+  width: 30px;
+  height: 30px;
+  color: black;
+  background-color: gold;
+}
+
+.totalPrice {
+  font-size: 1.3rem;
+  font-weight: bold;
+  width: 150px;
+  text-align: center;
+  color: gold;
+}
+
+.removeBtn {
+  background-color: gold;
+  margin: 0.5rem 0;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+}
+
+.amountBox {
+  background: linear-gradient(65deg, #e61c23, #e61c23 50%, #0472ea 50%);
+  width: 450px;
+  align-self: flex-end;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 0 10px gray;
+  padding: 1rem 0;
+  border-radius: 10px;
+}
+
+.totalAmount {
+  padding: 1rem;
+  font-size: 2rem;
+}
+
+.totalAmount > span {
+  color: gold;
+  font-weight: bold;
+}
+
+.payBtn {
+  width: 80%;
+  text-align: center;
+  background-color: gold;
+  padding: 0.5rem;
+  border-radius: 10px;
+}
+
+/* Footer Component */
+.footer {
+  padding: 0.5rem;
+  background: linear-gradient(65deg, #e61c23, #e61c23 50%, #0472ea 50%);
+  width: 100%;
+  height: max-content;
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+}
+
+.footer h3,
+.footer h5 {
+  font-weight: 300;
+  color: white;
+}
+
+.attrib {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.images {
+  color: white;
+  margin-left: 1rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.images > img {
+  margin-inline: 0.5rem;
+  height: 45px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px black;
+}
+
+/* Notification Component */
+.notif {
+  width: 50%;
+  position: fixed;
+  text-align: center;
+  background-color: lightblue;
+  padding: 0.3rem 1rem;
+  border-radius: 10px;
+  border: 2px solid #5accf1;
+  transform: translate(50%, 50%);
+  z-index: 10;
+}
+
+.notif > h1 {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.noNotif {
+  display: none;
+}

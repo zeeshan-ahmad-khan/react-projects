@@ -58,7 +58,7 @@ function Cart() {
                                 <span>${totalAmount}</span>
                             </div>
                             <div className="payBtn">
-                                <Link to="payment">
+                                <Link to="/payment">
                                     <button>Proceed to Pay</button>
                                 </Link>
                             </div>

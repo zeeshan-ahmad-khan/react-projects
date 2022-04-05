@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    uid: undefined,
-    userName: undefined,
-    userImg: undefined,
+    uid: null,
+    userName: null,
+    userImg: null,
 }
 
 const authSlice = createSlice({
@@ -16,9 +16,10 @@ const authSlice = createSlice({
             state.userImg = action.payload.userImg;
         },
         signout: (state) => {
-            state.uid = "";
-            state.userName = "";
-            state.userImg = "";
+            state.uid = null;
+            state.userName = null;
+            state.userImg = null;
+            localStorage.removeItem("user");
         }
     }
 })

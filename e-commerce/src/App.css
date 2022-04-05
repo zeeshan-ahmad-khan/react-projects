@@ -116,6 +116,7 @@ button {
 
 .hero > h1 {
   text-align: center;
+  letter-spacing: 0.3rem;
 }
 
 .heroCard {
@@ -398,4 +399,40 @@ button {
 
 .noNotif {
   display: none;
+}
+
+/* Payment Page */
+.payment {
+  margin-inline: auto;
+  width: 70%;
+  min-height: 81vh;
+}
+
+.payment .payment-mode {
+  margin: 1rem 3rem;
+  padding: 1rem;
+  border-radius: 10px;
+  background-image: linear-gradient(65deg, #e61c23, #e61c23 50%, #0472ea 50%);
+  box-shadow: 0 0 10px #1f1f1f3b;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.payment .payment-mode .options img {
+  width: 150px;
+  height: 90px;
+  border-radius: 10px;
+  margin-inline: 1rem;
+  cursor: pointer;
+}
+
+.payment .payment-text {
+  margin: 3rem;
+  padding: 1rem;
+}
+
+.payment button {
+  margin: 1rem 3rem 0 3rem;
 }

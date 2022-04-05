@@ -1,20 +1,18 @@
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { addToCart } from '../features/cartSlice';
 import axios from 'axios';
 import Header from './Header';
 import Footer from './Footer';
-import Notification from './Notification';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function Cards({ alignment, character, isCart }) {
 
     const dispatch = useDispatch();
-
     const [data, setData] = useState([]);
-    const [comment, setComment] = useState("");
-    const [notif, setNotif] = useState(false);
-
     const controller = new AbortController();
 
     useEffect(() => {
@@ -32,26 +30,30 @@ function Cards({ alignment, character, isCart }) {
         return () => controller.abort();
     }, [])
 
+
+
     const handleAddToCart = (d) => {
         dispatch(addToCart(d));
-        setNotif(true);
-        setComment(`${d.name} added to cart !`)
+        toast.info(`${d.name} added to cart !`)
     }
-
-    setTimeout(() => {
-        setNotif(false);
-        setComment("");
-    }, 2000);
 
     return (
         <>
-            <Notification comment={comment} notif={notif} />
+            <ToastContainer
+                position="top-center"
+                autoClose={3000}
+                hideProgressBar={true}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+            />
             <Header />
             <div className='cards'>
                 {data.map(d => {
                     return (
                         <div className="card" key={d.id}>
-                            <Link to={`${d.id}`} >
+                            <Link to={`/${d.id}`} >
                                 <h1>{d.name}</h1>
                                 <div className="price">${d?.price}</div>
                                 <div className="imgContainer">

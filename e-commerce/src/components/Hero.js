@@ -14,7 +14,7 @@ function Hero() {
 
     return (
         <section className='hero'>
-            <h1>Login to choose your side !!!</h1>
+            <h1><em>Login to choose your side !!!</em></h1>
             {data.map((d, i) => {
                 return (
                     <Link to={`${d.name}`} key={i}>

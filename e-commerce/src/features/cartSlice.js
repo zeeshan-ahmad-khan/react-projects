@@ -1,10 +1,21 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
+import { signout } from "./authSlice";
 
 const initialState = {
     cartItems: [],
     totalQuantity: 0,
     totalPrice: 0,
 }
+
+export const fetchCart = createAsyncThunk('cart/fetchCart', async (uid) => {
+    try {
+        const response = await axios.get(`https://cardverse-179d7-default-rtdb.firebaseio.com/${uid}.json`);
+        return response.data;
+    } catch (error) {
+        throw new Error(error);
+    }
+})
 
 const cartSlice = createSlice({
     name: "cart",
@@ -52,6 +63,19 @@ const cartSlice = createSlice({
                 state.totalPrice -= action.payload.price;
             }
         }
+    },
+    extraReducers: (builder) => {
+        builder
+            .addCase(fetchCart.fulfilled, (state, action) => {
+                state.cartItems = action.payload.cartItems;
+                state.totalQuantity = action.payload.totalQuantity;
+                state.totalPrice = action.payload.totalPrice;
+            })
+            .addCase(signout, (state) => {
+                state.cartItems = [];
+                state.totalQuantity = 0;
+                state.totalPrice = 0;
+            })
     }
 })
 

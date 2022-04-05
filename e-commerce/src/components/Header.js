@@ -4,16 +4,15 @@ import { Link } from 'react-router-dom';
 import { app } from '../config/firebase';
 import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth'
 import { login, signout } from '../features/authSlice';
-import { useState } from 'react';
-import Notification from './Notification';
+import { fetchCart } from '../features/cartSlice';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Header({ isHomePage = false, isCart = false }) {
 
-    const [comment, setComment] = useState("");
-    const [notif, setNotif] = useState(false);
-
     const quantity = useSelector(state => state.cart.totalQuantity);
-    const user = useSelector(state => state.auth);
+    const loggedUser = useSelector(state => state.auth);
+    // console.log(loggedUser);
 
     const dispatch = useDispatch();
 
@@ -35,9 +34,9 @@ function Header({ isHomePage = false, isCart = false }) {
                     userName: user.displayName,
                     userImg: user.photoURL,
                 }))
+                dispatch(fetchCart(user.uid))
                 console.log("User Signed In");
-                setComment(`${user.displayName} logged in !`)
-                setNotif(true);
+                toast.success(`${user.displayName} logged in !`)
             }).catch((error) => {
                 // Handle Errors here.
                 const errorCode = error.code;
@@ -47,44 +46,45 @@ function Header({ isHomePage = false, isCart = false }) {
                 // The AuthCredential type that was used.
                 const credential = GoogleAuthProvider.credentialFromError(error);
                 // ...
-                setComment("")
-                setNotif(false);
             });
     }
 
     const signOutHandler = () => {
-        signOut(auth).then(() => {
-            dispatch(signout());
-            console.log("Signed Out");
-            setNotif(true);
-            setComment(`${user.userName} logged out !`)
-        }).catch((error) => {
-            console.log(error);
-        })
+        signOut(auth)
+            .then(() => {
+                dispatch(signout());
+                console.log("Signed Out");
+            }).catch((error) => {
+                console.log(error);
+            })
+        toast.success(`${loggedUser.userName} logged out !`)
     }
-
-    setTimeout(() => {
-        setNotif(false);
-        setComment("");
-    }, 3000)
 
     return (
         <>
-            <Notification comment={comment} notif={notif} />
+            <ToastContainer
+                position="top-center"
+                autoClose={3000}
+                hideProgressBar={true}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+            />
             <header className='header'>
                 <div className="headerLogo">
                     <Link to="/">MARVELxDC Cardverse</Link>
                 </div>
-                {!(isHomePage || isCart) &&
+                {/* {!(isHomePage || isCart) &&
                     <div className="headerSearchBar">
                         <input type="text" />
                         <div className="magnifier">
                             <FaSearch style={{ fill: "white" }} />
                         </div>
-                    </div>}
+                    </div>} */}
                 <div className="headerButton">
-                    {!user.uid && <button onClick={loginHandler}>Login</button>}
-                    {user.uid && <button onClick={signOutHandler}>Sign Out</button>}
+                    {!loggedUser.uid && <button onClick={loginHandler}>Login</button>}
+                    {loggedUser.uid && <button onClick={signOutHandler}>Sign Out</button>}
                     <div className="cart">
                         <Link to="/cart">
                             <FaShoppingCart style={{ fill: "white" }} />
@@ -92,8 +92,8 @@ function Header({ isHomePage = false, isCart = false }) {
                         </Link>
                     </div>
                     <div className="user">
-                        <span>{user.userName || "No User"}</span>
-                        <img src={user.userImg || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThPIWNxqYlgwcPj7JZDM_5pS7nf-Gy9ySNmD4WOLHd_YGhEILVR-DqzJ6FIEdbMw-dxoY&usqp=CAU"} alt="user photo" />
+                        <span>{loggedUser.userName || "No User"}</span>
+                        <img src={loggedUser.userImg || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThPIWNxqYlgwcPj7JZDM_5pS7nf-Gy9ySNmD4WOLHd_YGhEILVR-DqzJ6FIEdbMw-dxoY&usqp=CAU"} alt="user photo" />
                     </div>
                 </div>
             </header>

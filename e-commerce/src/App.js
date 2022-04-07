@@ -18,9 +18,11 @@ function App() {
   const cart = useSelector(state => state.cart);
   const user = useSelector(state => state.auth);
 
+  console.log(cart);
+
   const addCartItemsToDB = async () => {
     if (user) {
-      await axios.put(`https://cardverse-179d7-default-rtdb.firebaseio.com/${user.uid}.json`, cart);
+      await axios.put(`https://cardverse-179d7-default-rtdb.firebaseio.com/${user.uid}.json`, JSON.stringify(cart));
     }
   }
 

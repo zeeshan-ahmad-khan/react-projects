@@ -88,12 +88,12 @@ function Header({ isHomePage = false, isCart = false }) {
                 <div className="headerButton">
                     {!loggedUser.uid && <button onClick={loginHandler}>Login</button>}
                     {loggedUser.uid && <button onClick={signOutHandler}>Sign Out</button>}
-                    <div className="cart">
+                    {!isCart && <div className="cart">
                         <Link to="/cart">
                             <FaShoppingCart style={{ fill: "black" }} />
                             <div className="itemQuantity">{quantity}</div>
                         </Link>
-                    </div>
+                    </div>}
                     <div className="user">
                         <span>{loggedUser.userName || "No User"}</span>
                         <img src={loggedUser.userImg || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThPIWNxqYlgwcPj7JZDM_5pS7nf-Gy9ySNmD4WOLHd_YGhEILVR-DqzJ6FIEdbMw-dxoY&usqp=CAU"} alt="user photo" />

@@ -22,8 +22,9 @@ const cartSlice = createSlice({
     initialState,
     reducers: {
         addToCart: (state, action) => {
-            let existingItemIdx = state.cartItems.findIndex(item => item.id === action.payload.id);
 
+            let existingItemIdx = state?.cartItems.findIndex(item => item.id === action.payload.id);
+            // console.log(existingItemIdx, state.cartItems);
             if (existingItemIdx > -1) {
                 state.cartItems[existingItemIdx].quantity++;
                 state.totalPrice += action.payload.price;
@@ -36,24 +37,25 @@ const cartSlice = createSlice({
             // console.log(existingItemIdx, state.totalQuantity, state.totalPrice);
         },
         removeFromCart: (state, action) => {
-            let newCart = state.cartItems.filter(item => item.id !== action.payload.id)
+            let newCart = state?.cartItems.filter(item => item.id !== action.payload.id)
 
             state.cartItems = newCart;
             state.totalPrice -= action.payload.price * action.payload.quantity;
             state.totalQuantity--;
         },
         increase: (state, action) => {
-            let existingItemIdx = state.cartItems.findIndex(item => item.id === action.payload.id);
+            let existingItemIdx = state?.cartItems.findIndex(item => item.id === action.payload.id);
             state.cartItems[existingItemIdx].quantity++;
             state.totalPrice += action.payload.price;
         },
         decrease: (state, action) => {
-            let existingItemIdx = state.cartItems.findIndex(item => item.id === action.payload.id);
+            let existingItemIdx = state?.cartItems.findIndex(item => item.id === action.payload.id);
 
             state.cartItems[existingItemIdx].quantity--;
             // console.log(state.cartItems[existingItemIdx].quantity);
 
             if (state.cartItems[existingItemIdx].quantity < 1) {
+
                 let newCart = state.cartItems.filter(item => item.id !== action.payload.id)
 
                 state.cartItems = newCart;
@@ -67,9 +69,9 @@ const cartSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(fetchCart.fulfilled, (state, action) => {
-                state.cartItems = action.payload.cartItems;
-                state.totalQuantity = action.payload.totalQuantity;
-                state.totalPrice = action.payload.totalPrice;
+                state.cartItems = action.payload.cartItems || [];
+                state.totalQuantity = action.payload.totalQuantity || 0;
+                state.totalPrice = action.payload.totalPrice || 0;
             })
             .addCase(signout, (state) => {
                 state.cartItems = [];

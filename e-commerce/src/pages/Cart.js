@@ -12,10 +12,9 @@ function Cart() {
     const totalAmount = useSelector(state => state.cart.totalPrice);
     const dispatch = useDispatch();
 
-    const isCartEmpty = cartItems.length < 1;
+    const isCartEmpty = cartItems?.length < 1;
 
-    // console.log(cartItems);
-
+    console.log(cartItems);
     return (
         <>
             <Header isCart={true} />
@@ -37,6 +36,7 @@ function Cart() {
                             return (
                                 <div className="cartItems" key={item.id}>
                                     <div className="img">
+                                        <h3>{item?.name}</h3>
                                         <img src={item?.images?.lg} alt={item.name} />
                                     </div>
                                     <div className="quantity">

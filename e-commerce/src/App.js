@@ -6,7 +6,6 @@ import Home from './pages/Home';
 import Payment from './pages/Payment';
 
 import Cards from './components/Cards';
-import CardDetails from './components/CardDetails';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
@@ -38,9 +37,7 @@ function App() {
             <>
               <Route path='/cart' element={<Cart isCart={true} />} />
               <Route path='/superheroes' element={<Cards alignment="good" character="superheroes" isCart={false} />} />
-              <Route path='/superheros:id' element={<CardDetails />} />
               <Route path='/supervillains' element={<Cards alignment="bad" character="supervillains" isCart={false} />} />
-              <Route path='/supervillains:id' element={<CardDetails />} />
               <Route path='/payment' element={<Payment />} />
             </>
           }

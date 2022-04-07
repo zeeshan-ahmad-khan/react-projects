@@ -29,11 +29,13 @@ function Header({ isHomePage = false, isCart = false }) {
                 const user = result.user;
                 // console.log(user);
                 // ...
-                dispatch(login({
+                const userData = {
                     uid: user.uid,
                     userName: user.displayName,
                     userImg: user.photoURL,
-                }))
+                }
+                sessionStorage.setItem("user", JSON.stringify(userData));
+                dispatch(login(userData))
                 dispatch(fetchCart(user.uid))
                 console.log("User Signed In");
                 toast.success(`${user.displayName} logged in !`)
@@ -52,18 +54,19 @@ function Header({ isHomePage = false, isCart = false }) {
     const signOutHandler = () => {
         signOut(auth)
             .then(() => {
+                sessionStorage.removeItem("user");
                 dispatch(signout());
                 console.log("Signed Out");
+                toast.success(`${loggedUser.userName} logged out !`)
             }).catch((error) => {
                 console.log(error);
             })
-        toast.success(`${loggedUser.userName} logged out !`)
     }
 
     return (
         <>
             <ToastContainer
-                position="top-center"
+                position="top-left"
                 autoClose={3000}
                 hideProgressBar={true}
                 newestOnTop={false}

@@ -158,27 +158,26 @@ button {
   gap: 3rem;
 }
 
-.cards h1 {
-  color: gold;
-  margin: 0;
-  font-size: 1.5rem;
-}
-
-.card {
+.cards .card {
   position: relative;
+  height: 330px;
   padding: 1rem 0;
   background: linear-gradient(65deg, #e61c23, #e61c23 50%, #0472ea 50%);
-}
-
-.card > a {
-  width: 100%;
+  border: 5px solid gold;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
+  align-items: flex-end;
 }
 
-.price {
+.cards .card h1 {
+  width: 90%;
+  background-color: gold;
+  padding: 0.3rem 1rem;
+  font-size: 1.3rem;
+  text-align: right;
+}
+
+.cards .card .price {
   position: absolute;
   top: -20px;
   left: -20px;
@@ -194,47 +193,60 @@ button {
 }
 
 .imgContainer {
-  position: relative;
-  width: 90%;
-  height: 80%;
+  position: absolute;
+  top: 5%;
+  left: 2%;
+  width: 100%;
+  z-index: 1;
+}
+
+.imgContainer > img {
+  width: 30%;
   border: 5px solid gold;
   box-shadow: 0 0 5px #1f1f1f;
 }
 
-.imgContainer > img {
-  width: 100%;
-  height: 80%;
+.cards .card p {
+  background-color: gold;
+  width: 90%;
+  margin-inline: auto;
+  padding: 0.5rem;
+  font-size: 0.7rem;
+  text-align: justify;
 }
 
 .powerstats {
-  position: absolute;
-  bottom: -1px;
-  width: 100%;
+  transform: translate(-5%, -15%);
+  border: 3px solid black;
+  width: 50%;
+  height: 20%;
+  margin: 0 0.5rem;
   background-color: gold;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 0.5rem 1rem;
-  padding: 0.5rem 0;
+  gap: 0.5rem;
+  padding: 0.5rem 0.3rem;
 }
 
 .stats {
-  width: 100px;
   display: flex;
   align-items: center;
   justify-content: left;
 }
 
 .stats > img {
-  width: 30px;
-  height: 30px;
+  width: 15px;
+  height: 15px;
 }
 
 .stats > span {
-  font-size: 1.3rem;
+  font-size: 0.7rem;
   margin-left: 1rem;
 }
 
 .btns {
+  position: absolute;
+  bottom: -7%;
   width: calc(100% - 2rem);
   background-color: gold;
   border-radius: 10px;
@@ -265,9 +277,17 @@ button {
 
 .img {
   position: relative;
-  width: 15%;
+  width: 13%;
+  transform: scale(0.8);
   border: 5px solid gold;
   box-shadow: 0 0 5px #1f1f1f;
+}
+
+.img h3 {
+  position: absolute;
+  top: -30%;
+  left: 20%;
+  color: gold;
 }
 
 .img > img {

@@ -90,7 +90,7 @@ function Header({ isHomePage = false, isCart = false }) {
                     {loggedUser.uid && <button onClick={signOutHandler}>Sign Out</button>}
                     <div className="cart">
                         <Link to="/cart">
-                            <FaShoppingCart style={{ fill: "white" }} />
+                            <FaShoppingCart style={{ fill: "black" }} />
                             <div className="itemQuantity">{quantity}</div>
                         </Link>
                     </div>

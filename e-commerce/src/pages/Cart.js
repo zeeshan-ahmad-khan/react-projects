@@ -12,9 +12,8 @@ function Cart() {
     const totalAmount = useSelector(state => state.cart.totalPrice);
     const dispatch = useDispatch();
 
-    const isCartEmpty = cartItems?.length < 1;
+    const isCartEmpty = (cartItems?.length < 1 || cartItems === undefined || cartItems === null);
 
-    console.log(cartItems);
     return (
         <>
             <Header isCart={true} />

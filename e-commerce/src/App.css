@@ -293,7 +293,8 @@ button {
 .img h3 {
   position: absolute;
   top: -30%;
-  left: 20%;
+  text-align: center;
+  width: 100%;
   color: gold;
 }
 

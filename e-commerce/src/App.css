@@ -386,6 +386,11 @@ button {
   color: white;
 }
 
+.footer h5 a {
+  font-size: 1.3rem;
+  text-decoration: underline;
+}
+
 .attrib {
   display: flex;
   align-items: center;
@@ -405,28 +410,6 @@ button {
   height: 45px;
   border-radius: 10px;
   box-shadow: 0 0 10px black;
-}
-
-/* Notification Component */
-.notif {
-  width: 50%;
-  position: fixed;
-  text-align: center;
-  background-color: lightblue;
-  padding: 0.3rem 1rem;
-  border-radius: 10px;
-  border: 2px solid #5accf1;
-  transform: translate(50%, 50%);
-  z-index: 10;
-}
-
-.notif > h1 {
-  font-size: 1rem;
-  font-weight: 500;
-}
-
-.noNotif {
-  display: none;
 }
 
 /* Payment Page */

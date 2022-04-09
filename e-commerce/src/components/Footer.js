@@ -10,7 +10,7 @@ const Footer = () => {
                     <img src="./images/redux.png" alt="redux" />
                 </div>
             </div>
-            <h5>Design and Developed By Zeeshan ❤ with coolness 🧊</h5>
+            <h5>Design and Developed By <a href="https://zeeshan-ahmad-khan.netlify.app/">Zeeshan ❤</a> with coolness 🧊</h5>
         </section>
     )
 }

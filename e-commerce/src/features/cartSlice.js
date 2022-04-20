@@ -13,6 +13,7 @@ const initialState = {
 export const fetchCart = createAsyncThunk('cart/fetchCart', async (uid) => {
     try {
         const response = await axios.get(`https://cardverse-179d7-default-rtdb.firebaseio.com/${uid}.json`);
+        sessionStorage.setItem("cart", JSON.stringify(response.data))
         return response.data;
     } catch (error) {
         throw new Error(error);

@@ -2,10 +2,12 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { signout } from "./authSlice";
 
+const cart = JSON.parse(sessionStorage.getItem("cart"));
+
 const initialState = {
-    cartItems: [],
-    totalQuantity: 0,
-    totalPrice: 0,
+    cartItems: cart ? cart.cartItems : [],
+    totalQuantity: cart ? cart.totalQuantity : 0,
+    totalPrice: cart ? cart.totalPrice : 0,
 }
 
 export const fetchCart = createAsyncThunk('cart/fetchCart', async (uid) => {

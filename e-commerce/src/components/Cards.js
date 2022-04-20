@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { addToCart } from '../features/cartSlice';
+import { addToCart, fetchCart } from '../features/cartSlice';
 import axios from 'axios';
 import Header from './Header';
 import Footer from './Footer';

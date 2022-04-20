@@ -55,6 +55,7 @@ function Header({ isHomePage = false, isCart = false }) {
         signOut(auth)
             .then(() => {
                 sessionStorage.removeItem("user");
+                sessionStorage.removeItem("cart");
                 dispatch(signout());
                 console.log("Signed Out");
                 toast.success(`${loggedUser.userName} logged out !`)

@@ -21,7 +21,6 @@ const authSlice = createSlice({
             state.uid = null;
             state.userName = null;
             state.userImg = null;
-            localStorage.removeItem("user");
         }
     }
 })

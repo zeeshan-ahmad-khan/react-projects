@@ -6,12 +6,11 @@ import Home from './pages/Home';
 import Payment from './pages/Payment';
 
 import Cards from './components/Cards';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
-
-
 import './App.css';
+import { fetchCart } from './features/cartSlice';
 
 function App() {
 
@@ -22,7 +21,9 @@ function App() {
 
   const addCartItemsToDB = async () => {
     if (user) {
-      await axios.put(`https://cardverse-179d7-default-rtdb.firebaseio.com/${user.uid}.json`, JSON.stringify(cart));
+      const response = await axios.put(`https://cardverse-179d7-default-rtdb.firebaseio.com/${user.uid}.json`, JSON.stringify(cart));
+
+      sessionStorage.setItem("cart", JSON.stringify(response.data));
     }
   }
 

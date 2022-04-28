@@ -1,0 +1,406 @@
+:root {
+  --clr1: #122c91;
+  --clr2: #2a6fdb;
+  --clr3: #48d6d2;
+  --clr4: #ed2c2c;
+  --clr5: #f3ee53;
+}
+
+.App {
+  width: 100vw;
+  height: 100vh;
+  background-image: radial-gradient(var(--clr3), var(--clr2) 50%, var(--clr1));
+}
+
+.back {
+  --clr: black;
+  position: absolute;
+  top: calc(5% + 70px);
+  left: 5%;
+  width: 50px;
+  height: 30px;
+  outline: none;
+  color: var(--clr);
+  border: 2px solid var(--clr);
+  background-color: var(--clr4);
+  cursor: pointer;
+}
+/* >>>>> Pages <<<<< */
+/* Home Page */
+.homepage {
+  height: calc(100% - 70px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about {
+  background-image: linear-gradient(var(--clr1) 50%, var(--clr2));
+  color: var(--clr5);
+  box-shadow: 5px 5px 7px black;
+  width: 50%;
+  height: 50%;
+  border: 3px solid black;
+  display: flex;
+}
+
+.about p {
+  text-align: justify;
+  padding: 1.5rem 1rem;
+  flex: 2;
+}
+
+.about img {
+  width: 100%;
+  padding: 0.5rem;
+  flex: 1;
+}
+
+.navigation {
+  position: absolute;
+  top: calc(10% + 70px);
+  right: 3%;
+}
+
+.createRoomBtn,
+.chatRoomBtn {
+  position: relative;
+  width: 70px;
+  aspect-ratio: 1;
+  background-color: var(--clr1);
+  border: 3px solid black;
+}
+
+.chatRoomBtn {
+  margin-top: 3rem;
+}
+
+.createRoomBtn::before,
+.chatRoomBtn::before {
+  position: absolute;
+  bottom: -35%;
+  left: 10%;
+  font-size: 1rem;
+  color: var(--clr5);
+  content: "Create";
+}
+
+.chatRoomBtn::before {
+  width: 70px;
+  content: "My Chats";
+  left: 0;
+  font-size: 0.9rem;
+}
+
+.createRoomBtn img,
+.chatRoomBtn img {
+  width: 100%;
+  padding: 0.5rem;
+}
+
+/* Create Page */
+.create {
+  width: 70%;
+  height: calc(100% - 70px);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.block {
+  position: relative;
+  color: var(--clr5);
+  width: 45%;
+  height: 70%;
+  background-image: radial-gradient(var(--clr2), var(--clr1));
+  border: 3px solid black;
+  box-shadow: 3px 3px 7px black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.block h3 {
+  width: 100%;
+  text-align: center;
+  color: var(--clr5);
+  font-size: 1.5rem;
+  padding-block: 0.5rem;
+}
+
+.block p {
+  text-align: justify;
+  margin: 1rem 3rem;
+}
+
+.block form {
+  position: absolute;
+  bottom: 2rem;
+  width: 50%;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.block form input {
+  outline: none;
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 0.5rem;
+  margin-block: 0.5rem;
+}
+
+.block form button {
+  outline: none;
+  padding: 0.5rem;
+  border-radius: 10px;
+  border: 2px solid black;
+  background-color: var(--clr5);
+  cursor: pointer;
+}
+
+/* Chat Room Page */
+.chats {
+  width: 80%;
+  height: 80%;
+  margin: 1.5rem auto;
+  border: 2px solid black;
+  background-image: radial-gradient(var(--clr2), var(--clr1));
+  display: flex;
+}
+
+.roomList {
+  flex: 1;
+  color: var(--clr5);
+}
+
+.roomInfo,
+.roomUserHeader {
+  padding: 0.5rem 1rem;
+  color: white;
+  background-color: #000000cb;
+}
+
+.rooms > h5 {
+  color: white;
+  padding: 0.5rem;
+  background-color: var(--clr2);
+}
+
+aside {
+  width: 100%;
+  background-color: #ffffff26;
+  padding: 0.7rem;
+  margin-block: 0.3rem;
+}
+
+.chatSection {
+  flex: 3;
+  border: 2px solid black;
+  border-block: none;
+  position: relative;
+}
+
+.roomUsers {
+  flex: 1;
+  background-color: #add8e66d;
+}
+
+.roomUsers aside {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+  background-color: #0f356d28;
+}
+
+.roomUsers aside img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 1rem;
+  background-color: var(--clr5);
+}
+
+/* >>>>> Components <<<<< */
+/* Header */
+.header {
+  position: relative;
+  width: 100%;
+  height: 70px;
+  background-color: var(--clr2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 3px #000000;
+}
+
+.userDetails {
+  width: max-content;
+  height: 70%;
+  margin-left: 1rem;
+  padding: 0.5rem;
+  /* border: 3px solid var(--clr4); */
+  background-color: var(--clr1);
+  color: var(--clr3);
+  box-shadow: 2px 2px 2px black;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.userDetails img {
+  width: 30px;
+  height: 30px;
+  margin-right: 0.5rem;
+  border-radius: 50%;
+  background-color: var(--clr5);
+}
+
+.logo {
+  position: absolute;
+  left: 45%;
+  color: var(--clr5);
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.btns {
+  padding: 0 1rem;
+}
+
+.btns button {
+  width: 100px;
+  padding: 0.5rem;
+  margin: 0 0.5rem;
+  outline: none;
+  font-size: 0.9rem;
+  background: var(--clr3);
+  border: 2px solid var(--clr1);
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* Chat Box */
+.chatBox {
+  width: 100%;
+  height: 100%;
+  color: white;
+}
+
+.chatHeader {
+  width: 100%;
+  background-color: #000000cb;
+}
+
+.chatHeader p {
+  padding: 1rem;
+}
+
+.messages {
+  height: calc(90% - 3rem);
+  border-bottom: 1px solid black;
+  font-size: 0.7rem;
+  overflow-y: scroll;
+}
+
+.messages::-webkit-scrollbar {
+  display: none;
+}
+
+.messageBlock {
+  width: min(50%, 300px);
+  color: var(--clr5);
+  background-color: var(--clr2);
+  margin-block: 0.3rem;
+  margin-left: auto;
+  margin-right: 0.5rem;
+  padding-inline: 0.3rem;
+  border-radius: 10px;
+  text-align: end;
+}
+
+.messageBlock p {
+  word-break: break-all;
+  font-size: 1.1rem;
+}
+
+.messageBlock span {
+  font-size: 0.5rem;
+}
+
+.messageOther {
+  background-color: var(--clr1);
+  margin-right: auto;
+  margin-left: 0.5rem;
+  text-align: start;
+}
+
+.chatBox form {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chatBox form input {
+  width: 70%;
+  margin: 0.3rem;
+  padding: 0.5rem;
+  border-radius: 10px;
+  border: 2px solid black;
+}
+
+.chatBox form button {
+  width: 50px;
+  outline: none;
+  padding: 0.5rem;
+  border-radius: 10px;
+  border: 2px solid black;
+  background-color: var(--clr5);
+  cursor: pointer;
+}
+
+/* Footer Component */
+.footer {
+  position: absolute;
+  top: 30%;
+  left: 0;
+  width: 100px;
+  height: max-content;
+  padding: 0.3rem;
+  transform: translateX(-100px);
+  background-color: var(--clr2);
+  box-shadow: 2px 0 3px #000000;
+  transition: transform 0.5s ease;
+}
+
+.openBtn {
+  width: 30px;
+  aspect-ratio: 1;
+  text-align: center;
+  background-color: var(--clr5);
+  transform: translate(95px, -5px);
+  box-shadow: 2px 2px 3px #000000;
+  cursor: pointer;
+}
+
+.footer:hover {
+  transform: translateX(0);
+}
+
+.attrib,
+.me {
+  font-size: 0.7rem;
+}
+
+.me a {
+  text-decoration: underline;
+  font-size: 0.9rem;
+}

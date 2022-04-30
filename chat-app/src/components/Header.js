@@ -5,6 +5,7 @@ import { useContext, useEffect } from "react";
 import { AuthContext } from "../context/authContext";
 import { addUsers } from "../db/firestoredb";
 import { validateUser } from "../validation/validate";
+import { ToastContainer, toast } from "react-toastify";
 
 function Header() {
 
@@ -45,6 +46,7 @@ function Header() {
                 })
                 sessionStorage.setItem("user", JSON.stringify(data));
                 console.log("User Logged In");
+                toast.success(`${user.displayName} Logged In !`);
             }).catch((error) => {
                 // Handle Errors here.
                 const errorCode = error.code;
@@ -55,6 +57,7 @@ function Header() {
                 const credential = GoogleAuthProvider.credentialFromError(error);
                 // ...
                 console.log(errorMessage, errorCode);
+                toast.error("An error occurred ! Plase login again.")
             });
     }
 
@@ -64,28 +67,43 @@ function Header() {
             dispatch({ type: "SIGNOUT" })
             sessionStorage.removeItem("user")
             console.log("User Signed Out !");
+            toast.success(`${state.userName} Signed Out !`);
         }).catch((error) => {
             // An error happened.
             console.log(error);
+            toast.error("An error occurred !")
         });
     }
 
     return (
-        <header className="header">
-            <div className="userDetails">
-                <img src={state.userImg || null} />
-                <h5>{state.userName || "No User"}</h5>
-            </div>
-            <div className="logo">
-                <Link to='/'>
-                    Chit Chat
-                </Link></div>
-            <div className="btns">
-                {!state.uid ?
-                    <button onClick={handleLogin}>Login</button> :
-                    <button onClick={handleSignout}>Sign Out</button>}
-            </div>
-        </header>
+        <>
+            <ToastContainer
+                position="top-center"
+                autoClose={1500}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
+            <header className="header">
+                <div className="userDetails">
+                    <img src={state.userImg || null} />
+                    <h5>{state.userName || "No User"}</h5>
+                </div>
+                <div className="logo">
+                    <Link to='/'>
+                        Chit Chat
+                    </Link></div>
+                <div className="btns">
+                    {!state.uid ?
+                        <button onClick={handleLogin}>Login</button> :
+                        <button onClick={handleSignout}>Sign Out</button>}
+                </div>
+            </header>
+        </>
     )
 }
 

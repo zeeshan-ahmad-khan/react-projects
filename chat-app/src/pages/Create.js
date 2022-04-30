@@ -1,11 +1,14 @@
 import { useContext, useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { addRoom, getRoomFromUserdb, getUserFromRoomdb, updateRoomInUserdb, updateUsersInRoomdb } from "../db/firestoredb";
 import { AuthContext } from '../context/authContext';
+import { validateRoomIdAndPassword } from "../validation/validate";
+import { ToastContainer, toast } from "react-toastify";
 
 function Create() {
 
     const { state } = useContext(AuthContext);
+    let navigate = useNavigate();
 
     // create room credentials
     const [createInput, setCreateInput] = useState({ roomName: "", roomPass: "" })
@@ -33,9 +36,29 @@ function Create() {
                 uid: state.uid,
                 userName: state.userName,
             }],
+            messages: [],
         }
 
         addRoom(createRoom);
+
+        // updating rooms in user collection
+        getRoomFromUserdb(state.uid)
+            .then(userInfo => {
+                // console.log(userInfo);
+                if (userInfo) {
+                    const isRoomExists = userInfo.rooms.findIndex(room => room.roomId === joinInput.roomId)
+
+                    if (isRoomExists === -1) {
+                        updateRoomInUserdb(userInfo.id, userInfo.rooms, {
+                            roomId: roomId,
+                            roomName: createInput.roomName,
+                            roomPass: createInput.roomPass
+                        })
+                    }
+                }
+            });
+
+        navigate("/chats");
         setCreateInput({ roomName: "", roomPass: "" })
         // console.log(createRoom);
     }
@@ -56,36 +79,57 @@ function Create() {
             userName: state.userName,
         };
 
-        // updating users in room collection
-        const roomInfo = await getUserFromRoomdb(joinInput.roomId);
+        validateRoomIdAndPassword(joinInput.roomId, joinInput.roomPass).then(result => {
 
-        if (roomInfo) {
-            const isUserExists = roomInfo.users.findIndex(user => user.uid === currentUser.uid)
+            // updating users in room collection
+            if (result.valid) {
 
-            if (isUserExists === -1) {
-                updateUsersInRoomdb(roomInfo.id, roomInfo.users, currentUser)
-            }
+                const isUserExists = result.roomInfo.users.findIndex(user => user.uid === currentUser.uid)
 
-            // updating rooms in user collection
-            const userInfo = await getRoomFromUserdb(state.uid);
-            console.log(userInfo);
-
-            if (userInfo) {
-                const isRoomExists = userInfo.rooms.findIndex(room => room.roomId === joinInput.roomId)
-
-                if (isRoomExists === -1) {
-                    updateRoomInUserdb(userInfo.id, userInfo.rooms, joinInput.roomId)
+                if (isUserExists === -1) {
+                    updateUsersInRoomdb(result.roomInfo.id, result.roomInfo.users, currentUser)
                 }
+
+                // updating rooms in user collection
+                getRoomFromUserdb(state.uid)
+                    .then(userInfo => {
+                        // console.log(userInfo);
+                        if (userInfo) {
+                            const isRoomExists = userInfo.rooms.findIndex(room => room.roomId === joinInput.roomId)
+
+                            if (isRoomExists === -1) {
+                                updateRoomInUserdb(userInfo.id, userInfo.rooms, {
+                                    roomId: joinInput.roomId,
+                                    roomName: result.roomInfo.roomName,
+                                    roomPass: joinInput.roomPass
+                                })
+                            }
+                        }
+                    });
+
+                navigate("/chats");
+            } else {
+                console.log("Room does not exist");
+                toast.error(`Room does not exist`);
             }
-        } else {
-            console.log("Room does not exist");
-        }
+        });
 
         setJoinInput({ roomId: "", roomPass: "" })
     }
 
     return (
         <section className="create">
+            <ToastContainer
+                position="top-center"
+                autoClose={1500}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
             <Link to='/'>
                 <button className="back">◀</button>
             </Link>

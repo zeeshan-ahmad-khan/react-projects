@@ -11,7 +11,9 @@ const getRooms = async () => {
 
     const roomRef = collection(db, "rooms");
     const roomSnap = await getDocs(roomRef)
-    const roomList = roomSnap.docs.map((room => room.data()));
+    const roomList = roomSnap.docs.map(room => {
+        return { ...room.data(), id: room.id };
+    });
 
     return roomList;
 }
@@ -45,7 +47,9 @@ const getUsers = async () => {
 
     const userRef = collection(db, "users");
     const userSnap = await getDocs(userRef);
-    const userList = userSnap.docs.map((user => user.data()));
+    const userList = userSnap.docs.map(user => {
+        return { ...user.data(), id: user.id };
+    });
 
     return userList;
 }
@@ -69,6 +73,14 @@ const updateRoomInUserdb = async (id, roomArray, currentRoom) => {
     })
 }
 
+const updateMessageInRoomdb = async (id, messagesArray, messageContent) => {
+
+    const roomIdRef = doc(db, "rooms", id);
+    await updateDoc(roomIdRef, {
+        messages: [...messagesArray, messageContent],
+    })
+}
+
 export {
     addRoom,
     getRooms,
@@ -77,5 +89,6 @@ export {
     addUsers,
     getUsers,
     getRoomFromUserdb,
-    updateRoomInUserdb
+    updateRoomInUserdb,
+    updateMessageInRoomdb,
 };

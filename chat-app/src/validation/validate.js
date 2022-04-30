@@ -1,4 +1,4 @@
-import { getUsers } from "../db/firestoredb"
+import { getUserFromRoomdb, getUsers } from "../db/firestoredb"
 
 const validateUser = async (userId) => {
 
@@ -10,6 +10,19 @@ const validateUser = async (userId) => {
 
 }
 
+const validateRoomIdAndPassword = async (roomId, roomPass) => {
+    const roomInfo = await getUserFromRoomdb(roomId);
+
+    if (roomInfo) {
+        if (roomInfo.roomId === roomId && roomInfo.roomPass === roomPass) {
+            return { roomInfo, valid: true };
+        }
+    } else {
+        return { roomInfo: [], valid: false };
+    }
+}
+
 export {
     validateUser,
+    validateRoomIdAndPassword,
 }

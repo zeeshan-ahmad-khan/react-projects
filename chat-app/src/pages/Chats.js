@@ -1,9 +1,45 @@
+import { collection, onSnapshot, query, where } from "firebase/firestore";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom"
 import ChatBox from "../components/ChatBox";
+import { db } from "../config/firebase";
+import { AuthContext } from "../context/authContext";
 
 function Chats() {
 
-    const roomIds = [69745, 98713, 93177]
+    const { state } = useContext(AuthContext);
+
+    const [rooms, setRooms] = useState([]);
+    const [users, setUsers] = useState([]);
+    const [currentRoom, setCurrentRoom] = useState({});
+
+    const handleUsers = (room) => {
+        setCurrentRoom({
+            roomName: room.roomName,
+            roomId: room.roomId,
+            roomPass: room.roomPass,
+        })
+    }
+
+    useEffect(() => {
+        const userRef = collection(db, "users");
+        const q = query(userRef, where("uid", "==", state.uid))
+        const userSnap = onSnapshot(q, (snap) => {
+            setRooms(snap.docs[0].data().rooms)
+        });
+
+        return () => userSnap();
+    }, [])
+
+    useEffect(() => {
+        if (currentRoom.roomId) {
+            const roomRef = collection(db, "rooms");
+            const q = query(roomRef, where("roomId", "==", currentRoom.roomId))
+            const roomSnap = onSnapshot(q, (snap) => {
+                setUsers(snap.docs[0].data().users);
+            });
+        }
+    }, [currentRoom])
 
     return (
         <section className="chats">
@@ -12,33 +48,31 @@ function Chats() {
             </Link>
             <div className="roomList">
                 <div className="roomInfo">
-                    <p>Room ID: 42231</p>
-                    <p>Password: a4d5s</p>
+                    <p>Room ID: {currentRoom.roomId}</p>
+                    <p>Password: {currentRoom.roomPass}</p>
                 </div>
                 <div className="rooms">
-                    <h5>Rooms</h5>
-                    {roomIds.map(roomId => (
-                        <aside key={roomId}>
-                            <h5>My Rooms Name</h5>
+                    <h5>Room Names to Chat</h5>
+                    {rooms?.map((room, i) => (
+                        <aside key={i} onClick={() => handleUsers(room)} className={room.roomId === currentRoom.roomId ? "active" : null}>
+                            <h5>{room.roomName}</h5>
                         </aside>
                     ))}
                 </div>
             </div>
             <div className="chatSection">
-                <ChatBox />
+                <ChatBox room={currentRoom} />
             </div>
             <div className="roomUsers">
                 <div className="roomUserHeader">
                     <p>Users</p>
                 </div>
-                <aside>
-                    <img src="#" alt="" />
-                    <h5>Zak Babu</h5>
-                </aside>
-                <aside>
-                    <img src="#" alt="" />
-                    <h5>Zak Babu</h5>
-                </aside>
+                {users?.map((user) => (
+                    <aside key={user.uid}>
+                        <img src={user.userImg} alt="#" />
+                        <h5>{user.userName}</h5>
+                    </aside>
+                ))}
             </div>
         </section>
     )

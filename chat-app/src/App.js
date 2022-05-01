@@ -7,6 +7,7 @@ import Create from './pages/Create';
 import Chats from './pages/Chats';
 import Home from './pages/Home';
 import { AuthContext } from './context/authContext';
+import Loader from './components/Loader';
 
 function App() {
 

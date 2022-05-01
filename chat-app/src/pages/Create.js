@@ -4,11 +4,15 @@ import { addRoom, getRoomFromUserdb, getUserFromRoomdb, updateRoomInUserdb, upda
 import { AuthContext } from '../context/authContext';
 import { validateRoomIdAndPassword } from "../validation/validate";
 import { ToastContainer, toast } from "react-toastify";
+import Loader from "../components/Loader";
 
 function Create() {
 
     const { state } = useContext(AuthContext);
     let navigate = useNavigate();
+
+    // loader state
+    const [loading, setLoading] = useState(false);
 
     // create room credentials
     const [createInput, setCreateInput] = useState({ roomName: "", roomPass: "" })
@@ -26,6 +30,9 @@ function Create() {
 
     const handleCreateRoomSubmit = (e) => {
         e.preventDefault();
+
+        setLoading(true);
+
         const roomId = Math.floor((Math.random() * 8999) + 10000).toString();
 
         const createRoom = {
@@ -58,6 +65,7 @@ function Create() {
                 }
             });
 
+        setLoading(false);
         navigate("/chats");
         setCreateInput({ roomName: "", roomPass: "" })
         // console.log(createRoom);
@@ -73,6 +81,8 @@ function Create() {
 
     const handleJoinRoomSubmit = async (e) => {
         e.preventDefault();
+
+        setLoading(true);
 
         const currentUser = {
             uid: state.uid,
@@ -107,8 +117,10 @@ function Create() {
                         }
                     });
 
+                setLoading(false);
                 navigate("/chats");
             } else {
+                setLoading(false);
                 console.log("Room does not exist");
                 toast.error(`Room does not exist`);
             }
@@ -119,6 +131,7 @@ function Create() {
 
     return (
         <section className="create">
+            {loading && <Loader />}
             <ToastContainer
                 position="top-center"
                 autoClose={1500}

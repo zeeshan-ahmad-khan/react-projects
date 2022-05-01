@@ -14,11 +14,12 @@ function Chats() {
     const [currentRoom, setCurrentRoom] = useState({});
 
     const handleUsers = (room) => {
-        setCurrentRoom({
-            roomName: room.roomName,
-            roomId: room.roomId,
-            roomPass: room.roomPass,
-        })
+        if (room)
+            setCurrentRoom({
+                roomName: room.roomName,
+                roomId: room.roomId,
+                roomPass: room.roomPass,
+            })
     }
 
     useEffect(() => {
@@ -38,6 +39,8 @@ function Chats() {
             const roomSnap = onSnapshot(q, (snap) => {
                 setUsers(snap.docs[0].data().users);
             });
+        } else {
+            setUsers([]);
         }
     }, [currentRoom])
 
@@ -61,7 +64,7 @@ function Chats() {
                 </div>
             </div>
             <div className="chatSection">
-                <ChatBox room={currentRoom} />
+                <ChatBox room={currentRoom} setCurrentRoom={setCurrentRoom} />
             </div>
             <div className="roomUsers">
                 <div className="roomUserHeader">

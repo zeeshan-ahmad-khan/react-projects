@@ -8,7 +8,7 @@ function Footer() {
                 Firebase
             </aside>
             <aside className="me">
-                Made by <a href="#">Zeeshan ❤</a> with Coolness 🧊
+                Made by <a href="https://zeeshan-ahmad-khan.netlify.app/">Zeeshan ❤</a> with Coolness 🧊
             </aside>
         </footer>
     )

@@ -482,11 +482,10 @@
 /* media queries */
 @media screen and (max-width: 640px) {
   .App {
-    min-height: 100vh;
+    height: max-content;
   }
   /* Home Page */
   .homepage {
-    height: 100%;
     flex-direction: column;
   }
   .logo {
@@ -503,7 +502,7 @@
   .about {
     width: 85%;
     height: max-content;
-    margin: 1rem auto;
+    margin: 50% auto 3rem;
     flex-direction: column-reverse;
   }
   .about > p {
@@ -528,15 +527,14 @@
 
   /* Create Page */
   .create {
-    height: auto;
-    padding-block: 5rem;
+    padding: 5rem 0;
     flex-direction: column;
   }
   .block {
     padding: 0;
     font-size: 0.7rem;
     width: 100%;
-    height: 500px;
+    height: 350px;
     margin-block: 1rem;
   }
   .block p {
@@ -550,7 +548,7 @@
 
   /* Chats Page */
   .chats {
-    height: auto;
+    margin-block: 5.5rem;
     flex-direction: column;
     font-size: 0.7rem;
   }
@@ -563,5 +561,12 @@
   }
   .messages {
     font-size: 0.5rem;
+  }
+  .chatBox form {
+    transform: scale(0.8);
+  }
+
+  .chatBox form input {
+    width: 100%;
   }
 }

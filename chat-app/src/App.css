@@ -51,7 +51,7 @@
 }
 
 .about img {
-  width: 100%;
+  width: 90%;
   padding: 0.5rem;
   flex: 1;
 }
@@ -481,6 +481,9 @@
 
 /* media queries */
 @media screen and (max-width: 640px) {
+  .App {
+    min-height: 100vh;
+  }
   /* Home Page */
   .homepage {
     height: 100%;
@@ -500,7 +503,7 @@
   .about {
     width: 85%;
     height: max-content;
-    margin-inline: auto;
+    margin: 1rem auto;
     flex-direction: column-reverse;
   }
   .about > p {
@@ -514,7 +517,6 @@
   .navigation {
     transform: scale(0.9);
     width: 50%;
-    /* height: max-content; */
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -526,14 +528,15 @@
 
   /* Create Page */
   .create {
+    height: 100%;
     padding-block: 5rem;
     flex-direction: column;
   }
   .block {
     padding: 0;
-    font-size: 0.6rem;
+    font-size: 0.7rem;
     width: 100%;
-    height: 150px;
+    height: 500px;
     margin-block: 1rem;
   }
   .block p {
@@ -543,5 +546,22 @@
     width: 90%;
     bottom: -3%;
     transform: scale(0.75);
+  }
+
+  /* Chats Page */
+  .chats {
+    height: 100%;
+    flex-direction: column;
+    font-size: 0.7rem;
+  }
+  .chatBox {
+    height: 500px;
+    font-size: 0.3rem;
+  }
+  .chatHeader p {
+    font-size: 1rem;
+  }
+  .messages {
+    font-size: 0.5rem;
   }
 }

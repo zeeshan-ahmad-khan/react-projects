@@ -528,7 +528,7 @@
 
   /* Create Page */
   .create {
-    height: 100%;
+    height: auto;
     padding-block: 5rem;
     flex-direction: column;
   }
@@ -550,7 +550,7 @@
 
   /* Chats Page */
   .chats {
-    height: 100%;
+    height: auto;
     flex-direction: column;
     font-size: 0.7rem;
   }
